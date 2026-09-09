@@ -126,8 +126,8 @@ Review the page against `references/anti-slop-checklist.md`. Look for clusters:
 - identical three-card or four-card grids repeated for unrelated content;
 - icon tile above every heading;
 - generic claims, fake metrics, vague testimonials, or repeated copy;
-- tiny labels, low-contrast supporting text, excessive rounded containers, and
-  monotonous spacing;
+- repeated eyebrow/kicker/overline labels, low-contrast supporting text,
+  excessive rounded containers, and monotonous spacing;
 - decorative motion, pulsing dots, blinking cursors, marquee text, or layout
   animation without task value;
 - polished default state with missing loading, empty, error, permission, or
@@ -137,6 +137,31 @@ Review the page against `references/anti-slop-checklist.md`. Look for clusters:
 Do not “fix” a pattern merely because it appears on the list. Ask whether it is
 specific to the product, improves a user task, and is consistent with the local
 design system.
+
+### Eyebrow, kicker, overline, and subtext audit
+
+Treat **eyebrow**, **kicker**, **overline**, **section label**, **subtitle**, and
+**supporting text** as the same audit family: small text placed before or after a
+heading to frame it. Do not remove these elements merely because AI-generated
+interfaces often overuse them. First classify their role:
+
+- **Keep** when the text supplies real context such as category, date, location,
+  status, mode, scope, or workflow state;
+- **Rewrite or remove** when it merely repeats the heading, paraphrases the body,
+  fills an expected template slot, or makes a generic claim;
+- **Recompose** when every section repeats the same `eyebrow → heading → subtext`
+  stack even though the content relationships differ;
+- **Preserve accessibly** when it is meaningful: keep the heading hierarchy,
+  readable contrast, responsive wrapping, and any required accessible name or
+  relationship.
+
+In source and rendered output, check for repeated `label`, `eyebrow`, `kicker`,
+`overline`, `subtitle`, `description`, or `supportingText` props/slots, not only
+visible screenshots. A meaningful eyebrow may stay even when its decorative style
+changes.
+
+Completion check: each retained eyebrow or subtext has a stated informational
+purpose, and each removed one has a concrete reason beyond “it looks AI.”
 
 Completion check: the audit names the smallest set of high-confidence problems,
 not a list of every possible preference disagreement.
@@ -193,6 +218,8 @@ Use real product language. Remove:
 
 - vague “unlock,” “empower,” “transform,” and “seamless” claims;
 - repeated descriptions of the same action;
+- eyebrow, kicker, overline, or subtitle text that only restates the heading or
+  paragraph;
 - fake metrics, testimonials, logos, customer names, or implied endorsements;
 - headings that merely restate the paragraph below;
 - decorative labels that do not help navigation or comprehension.

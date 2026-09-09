@@ -38,17 +38,29 @@ patterns that is unrelated to the product's content, task, or design system.
 
 ## Typography
 
-24. A tiny label placed above every heading.
+24. A tiny eyebrow, kicker, overline, or section label is placed above every heading
+    without providing real context.
 25. Interface text made too small to scan comfortably.
 26. Headings and body copy have almost the same visual weight.
 27. A rounded icon tile is stacked above every heading.
 28. An italic serif display headline used as a generic premium signal.
-29. A badge is placed above the main headline without meaningful status.
+29. A badge, eyebrow, or overline is placed above the main headline without meaningful status or context.
 30. The hero headline is so large it becomes the main visual object.
 31. Letter spacing is compressed until text is cramped.
 32. One fashionable font is overused for every purpose.
 33. A single font is used for headings, labels, data, and navigation without rationale.
 34. Body text is written in all caps.
+
+### Eyebrow and subtext review note
+
+The presence of an eyebrow or subtitle is not automatically a defect. Keep it when
+it gives the reader real category, date, location, status, mode, scope, or workflow
+context. Flag it when it repeats the heading, paraphrases the following paragraph,
+uses generic marketing language, or appears mechanically above every section.
+Check both the rendered result and source props/slots such as `label`, `eyebrow`,
+`kicker`, `overline`, `subtitle`, `description`, and `supportingText`. Meaningful
+text must retain readable contrast, heading relationships, responsive wrapping, and
+accessible semantics.
 
 ## Color and contrast
 
@@ -86,7 +98,7 @@ patterns that is unrelated to the product's content, task, or design system.
 
 ## Copy and language
 
-60. The same sentence is repeated inside one component.
+60. The same sentence or supporting subtext is repeated inside one component.
 61. Em dashes are overused as a rhythm substitute.
 62. Generic claims such as “unlock your potential” appear without evidence.
 63. Copy repeatedly manufactures forced contrast: “not just X, but Y.”
