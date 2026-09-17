@@ -1,9 +1,9 @@
 # Agent Skills
 
 Portable, composable skills for coding and writing agents. Each skill has one
-canonical `SKILL.md` entrypoint following the Agent Skills convention. The
-lowercase `skill.md` path is retained as a compatibility symlink for the original
-repository layout, so the content has one source of truth.
+authored `SKILL.md` entrypoint following the Agent Skills convention. The lowercase
+`skill.md` path is a generated compatibility copy for the original repository
+layout; run `python3 scripts/sync_entrypoints.py` after changing a canonical file.
 
 ## Included skills
 
@@ -18,15 +18,17 @@ repository layout, so the content has one source of truth.
 skills/
 ├── README.md
 ├── LICENSE
+├── scripts/
+│   └── sync_entrypoints.py
 ├── storyscope/
 │   ├── SKILL.md
-│   ├── skill.md -> SKILL.md
+│   ├── skill.md              # generated compatibility copy
 │   └── references/
 │       ├── editorial-checklist.md
 │       └── research-boundary.md
 └── unslop-ui/
     ├── SKILL.md
-    ├── skill.md -> SKILL.md
+    ├── skill.md              # generated compatibility copy
     ├── references/
     │   ├── adversarial-fixture.md
     │   ├── anti-slop-checklist.md

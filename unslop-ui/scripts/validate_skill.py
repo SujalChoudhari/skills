@@ -34,8 +34,10 @@ for skill_dir in (ROOT / "storyscope", ROOT / "unslop-ui"):
     canonical = skill_dir / "SKILL.md"
     alias = skill_dir / "skill.md"
     validate_frontmatter(canonical)
-    assert alias.is_symlink(), f"{alias}: expected compatibility symlink"
-    assert alias.resolve() == canonical, f"{alias}: wrong symlink target"
+    assert alias.is_file() and not alias.is_symlink(), (
+        f"{alias}: expected generated compatibility file"
+    )
+    assert read(alias) == read(canonical), f"{alias}: run scripts/sync_entrypoints.py"
 
 unslop = read(ROOT / "unslop-ui" / "SKILL.md")
 for phrase in (
