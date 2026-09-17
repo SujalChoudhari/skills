@@ -150,10 +150,6 @@ Return:
 - unresolved questions and the ordinary fact, privacy, citation, canon, code, or
   rendering checks still required.
 
-Read `references/research-boundary.md` when explaining the StoryScope research.
-It records the paper's scope and prevents fiction-corpus findings from being
-presented as universal rules for all writing.
-
 A successful pass improves reader trust and structural specificity. It does not
 claim that the result is human-written, undetectable, or publication-ready merely
 because a checklist was completed.

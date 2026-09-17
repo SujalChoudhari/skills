@@ -152,10 +152,7 @@ unverified. This is a UI quality procedure, not an authorship detector.
 
 - `references/audit-report-template.md`: required evidence and final response shape.
 - `references/anti-slop-checklist.md`: 100-item diagnostic catalog.
-- `references/adversarial-fixture.md`: representative regression fixture for
-  repeated eyebrows, generic labels, redundant subtext, and meaningful metadata.
 - `references/sources.md`: accessibility, responsive, usability, and design sources.
-- `scripts/validate_skill.py`: deterministic structure and fixture validator.
 
 ## Pitfalls
 
