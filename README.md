@@ -7,6 +7,8 @@ folder and starts with a lowercase `skill.md` entrypoint.
 
 - [`storyscope`](./storyscope/skill.md): Shape prose structure and reader trust
   without inventing experience or forcing a human-writing template.
+- [`skill-creator`](./skill-creator/skill.md): Create, revise, evaluate, and package
+  portable Agent Skills without prompt sprawl.
 - [`unslop-ui`](./unslop-ui/skill.md): Audit generic AI-like UI patterns while
   preserving the host design system, product intent, and interaction contracts.
 
@@ -20,6 +22,10 @@ skills/
 │   ├── skill.md
 │   └── references/
 │       └── editorial-checklist.md
+├── skill-creator/
+│   ├── skill.md
+│   └── references/
+│       └── inspiration.md
 └── unslop-ui/
     ├── skill.md
     └── references/
@@ -42,3 +48,4 @@ accessibility, or arbitrary replacement of an existing product's system.
 - [Agent Skills specification](https://agentskills.io/specification)
 - [Matt Pocock's skills](https://github.com/mattpocock/skills)
 - [Writing documents for agents](https://github.com/mattpocock/skills/blob/main/skills/productivity/writing-for-agents/SKILL.md)
+- [Public skill inspiration notes](./skill-creator/references/inspiration.md)
