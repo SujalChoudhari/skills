@@ -1,6 +1,6 @@
 ---
 name: unslop-ui
-description: Humanize UI without breaking its design system.
+description: Audit AI-like UI patterns, including repeated eyebrows and subtext, without breaking design systems.
 version: 0.1.0
 author: Sujal Choudhari, Hermes Agent
 license: MIT
@@ -10,6 +10,7 @@ metadata:
   references:
     - references/anti-slop-checklist.md
     - references/sources.md
+    - references/adversarial-fixture.md
 ---
 
 # Unslop UI
@@ -94,7 +95,73 @@ If a screenshot conflicts with source code, treat source code and live behavior 
 stronger evidence for implementation claims. A screenshot can reveal a visual
 problem but cannot prove that an interaction works.
 
-## Procedure
+## Mandatory audit gate — do this before editing
+
+Do not begin with a redesign, a slop score, a generic paragraph, or a list of
+preferred styles. The first deliverable of every Unslop UI pass is an evidence-led
+`AUDIT GATE` covering the supplied route/component/content.
+
+Return this table before proposing or applying changes:
+
+| Audit area | Status | Exact evidence | Checklist IDs | Smallest action |
+| --- | --- | --- | --- | --- |
+| Surface and hierarchy | `FLAGGED` / `NOT FLAGGED` / `N/A` / `BLOCKED` | source selector, text, or render observation | e.g. 6, 48 | action or “preserve” |
+| Eyebrows, labels, badges, subtitles, and subtext | same statuses | enumerate each instance or state why source/render is unavailable | e.g. 24, 29, 60, 62 | keep, rewrite, remove, or recompose |
+| Copy and content truth | same statuses | exact wording and supporting source | e.g. 10, 60–64 | action or “preserve” |
+| Decoration and visual convergence | same statuses | exact class/token/render evidence | e.g. 1–5, 16–23, 35–39 | action or “preserve” |
+| Typography and design-system drift | same statuses | token/source evidence | e.g. 12–15, 25–34 | action or “preserve” |
+| States, interaction, responsive behavior, accessibility | same statuses | test/render/console evidence | e.g. 69–100 | action or “blocked” |
+
+### Audit-gate rules
+
+1. **Every applicable pattern gets a finding.** Use the checklist IDs. Do not collapse
+   “eyebrows/subtext and all the rest” into “some minor polish issues.”
+2. **The auxiliary-text row is mandatory.** Count headings/sections and enumerate each
+   associated eyebrow, kicker, overline, label, badge, subtitle, description, or
+   supporting-text instance. Include the exact text, selector/component, and
+   classification: `MEANINGFUL`, `REDUNDANT`, `GENERIC`, `DECORATIVE`, or
+   `UNCLEAR`.
+3. **No evidence means `BLOCKED`, not `NOT FLAGGED`.** If only a screenshot was
+   supplied, say that source props and behavior could not be checked. If the source
+   was supplied but not rendered, say that visual behavior is blocked.
+4. **A clean score is not a pass.** A slop score or summary may supplement the table;
+   it cannot replace the table or the exact evidence.
+5. **Do not edit before the gate is complete.** If the user asked for fixes, complete
+   the gate first, then make the smallest evidence-backed changes.
+6. **Do not claim “unslopped,” “humanized,” or “no issues” while any row is `BLOCKED`,
+   any applicable checklist ID lacks evidence, or any `UNCLEAR` auxiliary text has
+   not been resolved.
+
+This gate is intentionally strict because generated UI reviews commonly acknowledge
+that a pattern exists and then skip it during the actual repair.
+
+## Auxiliary-text detection algorithm
+
+Use this exact pass for every heading-bearing section:
+
+1. Build an inventory from both rendered output and source. Search component markup,
+   props, CMS fields, and CSS selectors for `label`, `eyebrow`, `kicker`, `overline`,
+   `badge`, `subtitle`, `subheading`, `description`, `supportingText`, and equivalent
+   local names. Do not rely on visual intuition alone.
+2. For each section, record: selector/component, exact auxiliary text, heading text,
+   following body text, visual treatment, and whether the auxiliary text appears in
+   sibling sections.
+3. Classify the auxiliary text. It is `MEANINGFUL` only when it adds real category,
+   date, location, status, mode, scope, workflow state, instruction, constraint, or
+   other information not already present. Otherwise classify it as `REDUNDANT`,
+   `GENERIC`, `DECORATIVE`, or `UNCLEAR` and flag it.
+4. Flag repeated `eyebrow → heading → subtext` scaffolding when it appears across
+   unrelated sections and the repeated pieces do not represent different content
+   roles. Also flag generic filler such as “Build better,” “Powerful tools,”
+   “Designed for you,” “Everything you need,” or equivalent unsupported claims.
+5. Check whether meaningful auxiliary text remains readable and semantically related
+   at narrow widths, zoom, keyboard focus, and assistive-technology boundaries.
+6. Only after this inventory may you remove, merge, rewrite, or visually de-emphasize
+   auxiliary text. Preserve meaningful metadata even if its decorative styling changes.
+
+Minimum acceptable evidence is one row per instance or a counted inventory with
+selectors and exact text. “There are some eyebrows” is not an audit.
+
 
 ### 1. Establish the baseline
 
@@ -331,16 +398,19 @@ primary action is inaccessible.
 
 ## Verification report
 
-Return a concise report with:
+The final response must preserve the audit evidence; do not replace it with a vague
+“looks better” summary. Use this order:
 
-- route/component reviewed;
-- high-confidence problems found;
-- design-system elements preserved;
-- changes made and why;
-- states and viewports tested;
-- commands run and their actual results;
-- remaining limitations or blocked checks.
+1. `AUDIT GATE` table with all six rows and statuses;
+2. auxiliary-text inventory with exact text/selector and classifications;
+3. applicable checklist IDs with evidence and finding status;
+4. design-system elements preserved;
+5. changes made and why;
+6. states and viewports tested;
+7. commands run and their actual results;
+8. remaining `BLOCKED`, `UNCLEAR`, or unverified items.
 
-A successful pass makes the UI more specific and usable while leaving the
-project's visual identity recognizable. It does not claim that the result is
-“human-made” or undetectable.
+A response that contains only a slop score, screenshots, a list of visual changes,
+or “no issues found” without the audit gate is incomplete. A successful pass makes
+the UI more specific and usable while leaving the project's visual identity
+recognizable. It does not claim that the result is “human-made” or undetectable.
